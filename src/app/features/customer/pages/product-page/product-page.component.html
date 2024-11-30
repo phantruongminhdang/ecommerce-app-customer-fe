@@ -1,0 +1,201 @@
+<div class="flex gap-8 pt-12">
+    <aside class="w-1/4 mb-6">
+        <div class="offcanvas offcanvas-left offcanvas-collapse" tabindex="-1" id="offcanvasCategory"
+            aria-labelledby="offcanvasCategoryLabel">
+            <div class="offcanvas-body flex flex-col gap-8">
+                <div class="flex flex-col gap-3">
+                    <h5>Keyword</h5>
+                    <div class="flex flex-col gap-4">
+                        <!-- input -->
+                        <input type="search" (input)="filterByKeyword($event)"
+                            class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-4 focus:outline-none focus:ring-green-100"
+                            placeholder="Search for products">
+                    </div>
+                    <!-- form check -->
+                </div>
+                <div class="flex flex-col gap-3">
+                    <!-- price -->
+                    <h5>Price</h5>
+                    <div class="flex gap-4 text-[14px]">
+                        <!-- input -->
+                        <div>
+                            <div>Min Price: </div>
+                            <div>
+                                <input type="text" (input)="filterByMinPrice($event)"
+                                    class="block p-1 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-4 focus:outline-none focus:ring-green-100">
+                            </div>
+                        </div>
+                        <div>
+                            <div>Max Price: </div>
+                            <div>
+                                <input type="text" (input)="filterByMaxPrice($event)"
+                                    class="block p-1 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-4 focus:outline-none focus:ring-green-100">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-3">
+                    <!-- title -->
+                    <h5>Categories</h5>
+                    <!-- nav -->
+                    <ul class="flex flex-wrap overflow-auto h-96">
+                        <li *ngFor="let category of categories" class="border-b w-full">
+                            <a [routerLink]="['/product']" [queryParams]="{categoryId: category.id}"
+                                class="flex justify-between py-2 items-center text-gray-800 hover:text-green-600 collapsed"
+                                data-bs-toggle="collapse" data-bs-target="#categoryFlushOne" aria-expanded="false"
+                                aria-controls="categoryFlushOne">
+                                {{category.name}}
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+
+
+            </div>
+        </div>
+    </aside>
+    <section class="lg:w-3/4 w-full">
+        <!-- card -->
+        <div class="relative flex flex-col min-w-0 rounded-lg break-words bg-gray-100 p-8 mb-6">
+            <!-- card body -->
+            <div class="flex-auto">
+                <h1 class="text-xl">Product</h1>
+            </div>
+        </div>
+        <!-- list icon -->
+        <div class="flex flex-col md:flex-row justify-between lg:items-center mb-6 gap-3">
+            <div>
+                <p>
+                    <span class="text-gray-900">{{(paginationProduct$|async)?.totalItemsCount}}</span>
+                    Products found
+                </p>
+            </div>
+
+            <!-- icon -->
+            <div class="flex flex-col md:flex-row justify-between md:items-center gap-3">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-4">
+                        <a href="shop-list.html" class="text-gray-800">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-list" width="16"
+                                height="16" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <path d="M9 6l11 0"></path>
+                                <path d="M9 12l11 0"></path>
+                                <path d="M9 18l11 0"></path>
+                                <path d="M5 6l0 .01"></path>
+                                <path d="M5 12l0 .01"></path>
+                                <path d="M5 18l0 .01"></path>
+                            </svg>
+                        </a>
+                        <a href="shop-grid.html" class="active text-green-600">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-grid"
+                                width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <path d="M4 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z">
+                                </path>
+                                <path d="M14 4m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z">
+                                </path>
+                                <path d="M4 14m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z">
+                                </path>
+                                <path
+                                    d="M14 14m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z">
+                                </path>
+                            </svg>
+                        </a>
+                        <a href="shop-grid-3-column.html" class="text-gray-800">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-grid-dots"
+                                width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                                fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <path d="M5 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"></path>
+                                <path d="M12 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"></path>
+                                <path d="M19 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"></path>
+                                <path d="M5 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"></path>
+                                <path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"></path>
+                                <path d="M19 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"></path>
+                                <path d="M5 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"></path>
+                                <path d="M12 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"></path>
+                                <path d="M19 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="flex gap-3">
+                    <div class="flex-grow-1">
+                        <!-- select option -->
+                        <select (input)="filterByPageSize($event)"
+                            class="text-base py-2 block w-full border-gray-300 rounded-lg focus:border-green-600 focus:ring-green-600 disabled:opacity-50 disabled:pointer-events-none"
+                            fdprocessedid="fzf4wfl">
+                            <option selected="">Show: 12</option>
+                            <option value="8">8</option>
+                            <option value="12">12</option>
+                            <option value="16">16</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @if ((isLoading$|async) == true) {
+        <div role="status" class=" flex justify-center w-full">
+            <svg aria-hidden="true" class="w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
+                viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+                    fill="currentColor" />
+                <path
+                    d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+                    fill="currentFill" />
+            </svg>
+            <span class="sr-only">Loading...</span>
+        </div>
+        }
+        @else
+        {<div class="grid lg:grid-cols-4 md:grid-cols-3 gap-4">
+            <app-product *ngFor="let product of (paginationProduct$ | async)?.items" [product]="product"></app-product>
+        </div>
+        }
+        <div class="flex my-8">
+            <nav class="flex items-center gap-x-1">
+                <button type="button" [disabled]="!(paginationProduct$ | async)?.previous" [routerLink]="['/product']"
+                    [queryParams]="{pageIndex: ((paginationProduct$ | async)?.pageIndex|| 0)-1}"
+                    queryParamsHandling="merge"
+                    class="leading-none min-h-[36px] min-w-[36px] py-2 px-2.5 inline-flex justify-center items-center gap-x-1.5 rounded-md border bg-white border-gray-300 text-gray-800 hover:bg-gray-300 focus:outline-none focus:bg-gray-300 disabled:opacity-50 disabled:pointer-events-none"
+                    disabled="">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="16"
+                        height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M15 6l-6 6l6 6"></path>
+                    </svg>
+                </button>
+                <div class="flex items-center gap-x-1">
+                    <ng-content *ngFor="let page of pages">
+                        <button *ngIf="page!=-1" [routerLink]="['/product']" [queryParams]="{pageIndex: page-1}" oooooi
+                            queryParamsHandling="merge" routerLinkActive='bg-gray-300' type="button"
+                            class="leading-none min-h-[36px] min-w-[36px] py-2 px-2.5 inline-flex justify-center items-center gap-x-1.5 rounded-md border bg-white border-gray-300 text-gray-800  focus:outline-none focus:bg-gray-300 disabled:opacity-50 disabled:pointer-events-none"
+                            aria-current="page" fdprocessedid="0nq1ya">
+                            {{page}}
+                        </button>
+                    </ng-content>
+
+                </div>
+                <button type="button" [disabled]="!(paginationProduct$ | async)?.next" [routerLink]="['/product']"
+                    [queryParams]="{pageIndex: ((paginationProduct$ | async)?.pageIndex|| 0)+1}"
+                    queryParamsHandling="merge"
+                    class="leading-none min-h-[36px] min-w-[36px] py-2 px-2.5 inline-flex justify-center items-center gap-x-1.5 rounded-md border bg-white border-gray-300 text-gray-800 hover:bg-gray-300 focus:outline-none focus:bg-gray-300 disabled:opacity-50 disabled:pointer-events-none"
+                    fdprocessedid="msyjm">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-right"
+                        width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M9 6l6 6l-6 6"></path>
+                    </svg>
+                </button>
+            </nav>
+        </div>
+    </section>
+</div>

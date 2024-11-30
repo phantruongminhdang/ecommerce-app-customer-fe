@@ -1,0 +1,82 @@
+<div class="fixed inset-y-0 right-0 w-96 bg-white shadow-lg z-50 overflow-y-auto" [@slideInOut]>
+    <div class="p-6">
+        <div class="flex justify-between items-center mb-4">
+            <h3 class="text-lg font-medium text-gray-900">Edit Product</h3>
+            <button (click)="onClose()" class="text-gray-400 hover:text-gray-500">
+                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+        <form [formGroup]="orderForm" (ngSubmit)="onSubmit()" class="space-y-4">
+            <div>
+                <label for="userResponseDTO" class="mb-2 block text-sm font-medium text-gray-700">Customer</label>
+                <input type="text" id="userResponseDTO" [formControl]="userResponseDTO"
+                    class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            </div>
+            <div>
+                <label for="address" class="mb-2 block text-sm font-medium text-gray-700">
+                    Address
+                </label>
+                <input type="text" id="address" [formControl]="address"
+                    class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            </div>
+            <div>
+                <label for="orderDate" class="mb-2 block text-sm font-medium text-gray-700">Order Date</label>
+                <input type="datetime" id="customerId" [formControl]="orderDate"
+                    class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            </div>
+            <div>
+                <label for="deliveryDate" class="mb-2 block text-sm font-medium text-gray-700">Delivery Date</label>
+                <input type="datetime" id="deliveryDate" [formControl]="deliveryDate"
+                    class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            </div>
+            <div>
+                <label for="expectedDeliveryDate" class="mb-2 block text-sm font-medium text-gray-700">Expected Delivery
+                    Date</label>
+                <input type="datetime" id="expectedDeliveryDate" [formControl]="expectedDeliveryDate"
+                    class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            </div>
+            <div>
+                <label for="categoryId" class="mb-2 block text-sm font-medium text-gray-700">Status</label>
+                <select [formControl]="orderStatus"
+                    class="form-select bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    name="categoryId" required>
+                    <option *ngFor="let orderStatus of orderStatusList" [value]="orderStatus">
+                        {{orderStatus}}</option>
+                </select>
+            </div>
+            <div>
+                <label for="totalPrice" class="mb-2 block text-sm font-medium text-gray-700">Total Price</label>
+                <input type="text" id="totalPrice" [formControl]="totalPrice"
+                    class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            </div>
+            <div>
+                <label for="note" class="mb-2 block text-sm font-medium text-gray-700">Note</label>
+                <input type="text" id="note" [formControl]="note"
+                    class="mt-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+
+            </div>
+            <div class="flex justify-between">
+                <button type="button" (click)="onClose()"
+                    class="mr-2 bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    Close
+                </button>
+                <div class="flex gap-4">
+                    @if((order.orderStatus != "Failed") && (order.orderStatus != 'Delivered') && order.orderStatus !=
+                    'DeliveryFailed'){
+                    <button (click)="onEditOrder(order.orderStatus == 'Delivering' ? 'DeliveryFailed' : 'Failed')"
+                        class="bg-blue-500 text-white py-2 px-4 rounded-md shadow-sm text-sm font-medium hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                        {{order.orderStatus == 'Delivering' ? 'Delivered cancel' : 'Cancel Order'}}
+                    </button>
+                    <button *ngIf="order.orderStatus == 'Delivering'" (click)="onEditOrder('Delivered')"
+                        class="bg-blue-500 text-white py-2 px-4 rounded-md shadow-sm text-sm font-medium hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                        Delivered confirm
+                    </button>
+                    }
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

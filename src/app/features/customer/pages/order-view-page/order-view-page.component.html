@@ -1,0 +1,26 @@
+<div class="flex-1 h-full">
+    <div class="">
+        <div class="flex justify-between items-center mb-4 mt-8">
+            <h2 class="text-2xl font-bold mb-4">My Order</h2>
+            <div>
+                <!-- <button
+                class="p-2 border-2 border-gray-500 rounded bg-gray-500 text-white hover:bg-gray-800 hover:border-gray-800"
+                (click)="onAddProduct()">+
+                Create
+                Product</button> -->
+            </div>
+        </div>
+        @if(isLoading$ | async) {
+        <!-- Display your loading spinner or skeleton here -->
+        <app-order-table-skeleton></app-order-table-skeleton>
+        } @else {
+        <app-order-table-admin [orderList]="(paginationOrder$ | async)?.items || null"
+            (editOrder)="onEditOrder($event)"></app-order-table-admin>
+        }
+    </div>
+    <app-table-pagination-admin [route]="'/order'"
+        [pagination]="(paginationOrder$ | async)"></app-table-pagination-admin>
+
+</div>
+<app-order-update-popup-admin *ngIf="showModifyOrder" [orderId]="selectedUpdateOrderId" (save)="onSaveOrder($event)"
+    (close)="onCloseModifyOrder()"></app-order-update-popup-admin>

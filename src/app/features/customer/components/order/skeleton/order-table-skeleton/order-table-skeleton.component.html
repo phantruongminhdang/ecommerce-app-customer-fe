@@ -1,0 +1,79 @@
+<div role="status" class="animate-pulse">
+    <div class="overflow-x-auto">
+        <table class="w-full bg-white">
+            <thead class="bg-gray-100">
+                <tr>
+                    <th class="px-4 py-2 text-xs font-medium text-gray-500 uppercase border-r border-gray-200">Customer
+                    </th>
+                    <th class="px-4 py-2 text-xs font-medium text-gray-500 uppercase border-r border-gray-200">Order
+                        Date
+                    </th>
+                    <th class="px-4 py-2 text-xs font-medium text-gray-500 uppercase border-r border-gray-200">Delivery
+                        Date
+                    </th>
+                    <th class="px-4 py-2 text-xs font-medium text-gray-500 uppercase border-r border-gray-200">
+                        Expected Delivery Date</th>
+                    <th class="px-4 py-2 text-xs font-medium text-gray-500 uppercase border-r border-gray-200">Order
+                        Status
+                    </th>
+                    <th class="px-4 py-2 text-xs font-medium text-gray-500 uppercase border-r border-gray-200">Total
+                        Price
+                    </th>
+                    <th class="px-4 py-2 text-xs font-medium text-gray-500 uppercase border-r border-gray-200">Action
+                    </th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200">
+                <tr *ngFor="let item of [1,2,3,4]; let even = even" [ngClass]="{ 'bg-gray-50': even }">
+                    <!-- (click)="onEditProduct(product.id)"> -->
+                    <td
+                        class="px-4 py-2 whitespace-nowrap text-sm font-medium text-gray-900 text-center border-r border-gray-200">
+                        <div class="w-full h-2 bg-gray-200 rounded-md dark:bg-gray-700"></div>
+                    </td>
+                    <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-500 text-center border-r border-gray-200">
+                        <div class="w-full h-2 bg-gray-200 rounded-md dark:bg-gray-700"></div>
+                    </td>
+                    <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-500 text-center border-r border-gray-200">
+                        <div class="w-full h-2 bg-gray-200 rounded-md dark:bg-gray-700"></div>
+                    </td>
+                    <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-500 text-center border-r border-gray-200">
+                        <div class="w-full h-2 bg-gray-200 rounded-md dark:bg-gray-700"></div>
+                    </td>
+                    <td class="px-4 py-2 whitespace-nowrap text-sm text-center border-r border-gray-200">
+                        <span class="text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700">
+                            <div class="w-full h-2 bg-gray-200 rounded-md dark:bg-gray-700"></div>
+                        </span>
+                    </td>
+                    <td class="px-4 py-2 whitespace-nowrap text-sm text-gray-500 text-center border-r border-gray-200">
+                        <div class="w-full h-2 bg-gray-200 rounded-md dark:bg-gray-700"></div>
+                    </td>
+                    <td class="px-4 py-2 whitespace-nowrap text-sm font-medium text-center">
+                        <div class="grid grid-cols-2">
+                            <div class="flex justify-center">
+                                <svg class="text-yellow-600 hover:text-yellow-800 dark:text-white" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"
+                                    viewBox="0 0 24 24">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z" />
+                                </svg>
+                            </div>
+                            <div class="flex justify-center">
+                                <svg class="text-purple-400 hover:text-purple-600 dark:text-white" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none"
+                                    viewBox="0 0 24 24">
+                                    <path stroke="currentColor" stroke-width="2"
+                                        d="M21 12c0 1.2-4.03 6-9 6s-9-4.8-9-6c0-1.2 4.03-6 9-6s9 4.8 9 6Z" />
+                                    <path stroke="currentColor" stroke-width="2"
+                                        d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                                </svg>
+
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <span class="sr-only">Loading...</span>
+</div>

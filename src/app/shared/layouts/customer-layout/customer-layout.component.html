@@ -1,0 +1,9 @@
+<div class="flex h-screen">
+    <div class="overflow-x-auto w-full ">
+        <app-homepage-header (showCartDetailPopup)="onShowCartDetailPopup()"></app-homepage-header>
+        <div class="px-[100px] bg-white border font-medium ">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+    <app-cart-detail-popup *ngIf="showCartDetailPopup" (close)="onCloseCartDetailPopup()"></app-cart-detail-popup>
+</div>
